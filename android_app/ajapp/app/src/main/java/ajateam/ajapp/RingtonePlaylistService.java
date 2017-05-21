@@ -6,7 +6,9 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.Bundle;
 import android.os.IBinder;
+import android.os.ResultReceiver;
 import android.support.annotation.IntDef;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -35,7 +37,7 @@ public class RingtonePlaylistService extends Service {
 
         Log.e("State", String.valueOf(getState));
 
-        Intent intentMainActivity = new Intent(this.getApplicationContext(), MainActivity.class);
+        /*Intent intentMainActivity = new Intent(this.getApplicationContext(), MainActivity.class);
         PendingIntent pendingIntentMainActivity = PendingIntent.getActivity(this, (int) System.currentTimeMillis(),
                 intentMainActivity, 0);
         Notification notificationPopUp = new Notification.Builder(this)
@@ -48,7 +50,7 @@ public class RingtonePlaylistService extends Service {
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
         notificationManager.notify(0,notificationPopUp);
-
+        */
         if (getState) {
             startId = 1;
         } else {
@@ -67,6 +69,10 @@ public class RingtonePlaylistService extends Service {
 
             this.isRunning = true;
 
+            Intent intentMainActivity = new Intent(this.getApplicationContext(), SnoozeButton.class);
+            intentMainActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intentMainActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intentMainActivity);
 
         } else if (this.isRunning && startId == 0) {
 

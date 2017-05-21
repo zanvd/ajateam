@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ajateam.ajapp" >
+    package="ajateam.ajapp">
 
     <application
         android:allowBackup="true"
@@ -8,8 +8,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
-        <activity android:name=".MainActivity" >
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,8 +18,15 @@
         </activity>
 
         <receiver android:name=".AlarmReceiver" />
-        <service android:name=".RingtonePlaylistService" android:enabled="true" />
 
+        <service
+            android:name=".RingtonePlaylistService"
+            android:enabled="true" />
+
+        <activity
+            android:name=".SnoozeButton"
+            android:label="@string/title_activity_snooze_button"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

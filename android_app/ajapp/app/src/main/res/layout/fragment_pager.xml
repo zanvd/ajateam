@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="4dip"
+    android:gravity="center_horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@color/colorLight"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="4">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+            <ImageButton android:id="@+id/waker"
+                android:layout_height="52dp"
+                android:layout_width="52dp"
+                android:adjustViewBounds="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/alarm">
+            </ImageButton>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+            <ImageButton android:id="@+id/health"
+                android:layout_height="52dp"
+                android:layout_width="52dp"
+                android:adjustViewBounds="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/heart_rate">
+            </ImageButton>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+            <ImageButton android:id="@+id/morning_activity"
+                android:layout_height="52dp"
+                android:layout_width="52dp"
+                android:adjustViewBounds="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/morning_activity">
+            </ImageButton>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+            <ImageButton android:id="@+id/commute"
+                android:layout_height="52dp"
+                android:layout_width="52dp"
+                android:adjustViewBounds="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/commute">
+            </ImageButton>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1">
+    </android.support.v4.view.ViewPager>
+
+</LinearLayout>

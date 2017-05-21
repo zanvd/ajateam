@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">ajapp</string>
+    <string name="one">MainActivity.java</string>
+    <string name="two">two</string>
+    <string name="three">three</string>
+    <string name="four">four</string>
     <string name="cancel">Cancel</string>
     <string name="set_alarm">Set alarm</string>
     <string name="title_activity_snooze_button">SnoozeButton</string>

@@ -15,9 +15,10 @@ import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
+    AlarmReceiver alarmReceiver;
     AlarmManager alarmManager;
     TimePicker alarmTimePicker;
-    TextView updateStatus;
+    TextView updateStatus = (TextView) findViewById(R.id.updateText);
     Context context;
     PendingIntent pendingIntent;
 
@@ -29,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
         this.context = this;
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         alarmTimePicker = (TimePicker) findViewById(R.id.alarmOn);
-        updateStatus = (TextView) findViewById(R.id.updateText);
+//        updateStatus = (TextView) findViewById(R.id.updateText);
+        setAlarmText("No alarm is set");
 
         final Calendar calendar = Calendar.getInstance();
 
@@ -39,23 +41,20 @@ public class MainActivity extends AppCompatActivity {
         alarmOn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                System.out.println("setOnClickListener triggered");
                 calendar.set(Calendar.HOUR_OF_DAY, alarmTimePicker.getCurrentHour());
                 calendar.set(Calendar.MINUTE, alarmTimePicker.getCurrentMinute());
 
                 int hour = alarmTimePicker.getCurrentHour();
                 int min = alarmTimePicker.getCurrentMinute();
 
-                setAlarmText("Hey ho, let's go " + hour + " hour " + min + " min.");
+                setAlarmText("Alarm is set for " + hour + ":" + min);
 
                 intent.putExtra("extra", true);
 
                 pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
                 alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
-
-
-
             }
         });
 
@@ -64,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                setAlarmText("Hey oh, oh no.");
+                setAlarmText("No alarm is set");
 
                 alarmManager.cancel(pendingIntent);
 
@@ -75,9 +74,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void setAlarmText(String output) {
-
+    public void setAlarmText(String output) {
         updateStatus.setText(output);
     }
-
 }

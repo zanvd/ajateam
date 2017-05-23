@@ -9,13 +9,14 @@
 
 // Light sensor data.
 #define LIGHT_SURR    "light_surr"
+#define LIGHT_PERS    "light_pers"
 
 // Light switch data.
 #define LIGHT_SWITCH  "light_switch"
 
 // Time data.
 #define TIME_SLEEPY   "time_sleepy"
-#define TIME_READY      "time_ready"
+#define TIME_READY    "time_ready"
 
 // LED's.
 TKLed led_green(O0);
@@ -138,7 +139,7 @@ void loop() {
           Serial.print("- seconds: ");
           Serial.println(slp_sec);
           // Send data about snooze length.
-          post_request_time(TIME_SLEEPY, slp_min, slp_sec, "Time user spends laying in bed after alarm");
+          post_request_time(TIME_SLEEPY, slp_min, slp_sec, "Time user spends lying in bed after alarm");
           stopwatch = millis();
           led_green.brightness(0);
           led_yellow.brightness(0);
@@ -172,12 +173,17 @@ void loop() {
       post_request(THERM_PERS, temperature, "C");
 
       // Read heart rate.
-      //Serial.print("Heart Rate: ");
-      //Serial.println(light.read());
+      float heart_rate = light.read();
+      Serial.print("- heart Rate: ");
+      Serial.println(light.read());
+      post_request(LIGHT_PERS, heart_rate, "BPM");
 
       // Read breathing rate.
       //Serial.print("Breathing Rate: ");
       //Serial.println(pot_lin.read());
     }
   }
+  // Retrieve mode.
+  touch.readSwitch();
+  button.readSwitch();
 }
